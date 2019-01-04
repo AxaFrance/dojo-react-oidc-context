@@ -1,6 +1,6 @@
-import React from "react";
-import { CollapseCardBase, Accordion } from "@axa-fr/react-toolkit-collapse";
-import "./Home.scss";
+import React from 'react';
+import { CollapseCardBase, Accordion } from '@axa-fr/react-toolkit-collapse';
+import './Home.scss';
 
 const Home = ({ connectedUserFullName }) => (
   <>
@@ -29,7 +29,7 @@ const Home = ({ connectedUserFullName }) => (
       </CollapseCardBase>
       <CollapseCardBase collapse={false}>
         <CollapseCardBase.Header>
-          Découverte de l'application{" "}
+          Découverte de l'application{' '}
         </CollapseCardBase.Header>
         <CollapseCardBase.Body>
           <p>
@@ -71,7 +71,7 @@ const Home = ({ connectedUserFullName }) => (
           </p>
           <p>
             Vous devez ensuite intégrer la configuration à l'aide des
-            identifiants que vous trouverez sur le site{" "}
+            identifiants que vous trouverez sur le site{' '}
             <a href="https://demo.identityserver.io/">de démo d'IS4</a>.
             Choisissez le client correspondant à notre Use Case, et implémentez
             la configuration dans un fichier json.
@@ -116,7 +116,8 @@ const Home = ({ connectedUserFullName }) => (
         <CollapseCardBase.Body>
           <p>
             Lorsque l'utilisateur est connecté nous souhaitons avoir les
-            informations relatives à son compte également dans la page d'accueil (nom et prénom).
+            informations relatives à son compte également dans la page d'accueil
+            (nom et prénom).
           </p>
           <ul>
             <li>
@@ -128,7 +129,7 @@ const Home = ({ connectedUserFullName }) => (
       </CollapseCardBase>
       <CollapseCardBase collapse={false}>
         <CollapseCardBase.Header>
-          Installation de react-oidc-context-fetch{" "}
+          Installation de react-oidc-context-fetch{' '}
         </CollapseCardBase.Header>
         <CollapseCardBase.Body>
           <p>
@@ -144,7 +145,7 @@ const Home = ({ connectedUserFullName }) => (
       </CollapseCardBase>
       <CollapseCardBase collapse={false}>
         <CollapseCardBase.Header>
-          Part 4 - Ajout du token dans les appels API{" "}
+          Part 4 - Ajout du token dans les appels API{' '}
         </CollapseCardBase.Header>
         <CollapseCardBase.Body>
           <p>
