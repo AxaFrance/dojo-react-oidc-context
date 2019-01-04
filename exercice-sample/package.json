@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@axa-fr/react-oidc-context": "^1.1.5",
+    "@axa-fr/react-oidc-context": "^1.1.5",    
+    "@axa-fr/react-oidc-context-fetch": "^1.1.5",
     "@axa-fr/react-toolkit-alert": "^1.0.5",
     "@axa-fr/react-toolkit-all": "^1.0.5",
     "@axa-fr/react-toolkit-button": "^1.0.2",

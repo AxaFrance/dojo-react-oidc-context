@@ -1,5 +1,6 @@
 import Component from "./Projects.component";
 import { lifecycle, withState, compose, withHandlers } from "recompose";
+import { withAuthentication } from "@axa-fr/react-oidc-context-fetch";
 
 const getProjectsUrl = "/api/project";
 
@@ -17,8 +18,8 @@ const lifecycleHoc = lifecycle({
 });
 
 const withFetch = withHandlers({
-  getProjects: () => async () => {
-    const response = await fetch(getProjectsUrl);
+  getProjects: props => async () => {
+    const response = await props.fetch(getProjectsUrl);
     if (response.status !== 200) {
       throw response.statusText;
     }
@@ -28,6 +29,7 @@ const withFetch = withHandlers({
 
 export default compose(
   projectsState,
+  withAuthentication(fetch),
   withFetch,
   lifecycleHoc
 )(Component);

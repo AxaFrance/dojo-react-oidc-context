@@ -9,12 +9,13 @@ import {
   withHandlers
 } from "recompose";
 import { MessageContext } from "Shared/Messages";
+import withAuthentication from "@axa-fr/react-oidc-context-fetch/dist/withAuthentication";
 
 const getUsersUrl = "/api/admin/users";
 const usersState = withState("users", "setUsers", []);
 
 const withFetch = withHandlers({
-  getUsers: () => async () => {
+  getUsers: ({ fetch }) => async () => {
     const response = await fetch(getUsersUrl);
     if (response.status !== 200) {
       throw response.statusText;
@@ -44,6 +45,7 @@ const withBranch = hideIfNotData => branch(hideIfNotData, renderNothing);
 export default compose(
   usersState,
   withContext,
+  withAuthentication(fetch),
   withFetch,
   lifecycleHoc,
   withBranch(({ users }) => !users || users.length === 0)
