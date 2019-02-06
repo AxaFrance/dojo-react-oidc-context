@@ -2,7 +2,7 @@
 
 On va ici, à travers ce DOJO, voir comment utiliser [react-oidc](https://github.com/AxaGuilDEv/react-oidc) pour se connecter sur une application type AXA à travers un serveur d'authentification OAuth/OIDC type Google, Facebook, Axa Connect ou autre.
 
-Voici un peu le déroulé de la séance. Compter 2h pour le tout, avec 20/30 min d'introduction et 1h30 de pratique.
+Voici un peu le déroulé de la séance. Compter 1h30 pour le tout, avec 20/30 min d'introduction et 1h00 de pratique.
 
 ### Introduction du sujet
 
@@ -19,6 +19,7 @@ Nous devons avoir sur le poste :
 - Un accès vers Github en lecture.
 - Si en environnement entreprise, le proxy doit etre correctement configuré (cf les guides en interne)
 - [Npm](https://www.npmjs.com/get-npm) Installé
+- Avant de commencer le dojo le site doit être installé et tourner correctement avec le serveur de mock
 
 Pour cet exercice pratique nous allons utiliser le serveur OAuth du site d'IS4 : [serveur de démo](https://demo.identityserver.io/)
 
