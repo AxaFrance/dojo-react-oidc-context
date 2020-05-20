@@ -1,8 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthenticationProvider, InMemoryWebStorage } from '@axa-fr/react-oidc-context';
+
 import Messages, { MessageProvider } from 'Shared/Messages';
 
 import './App.scss';
+import 'polyfills';
+
+import oidcConfiguration from 'configuration.json';
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -10,9 +15,9 @@ import Routes from '../Routes';
 import NavBar from '../NavBar';
 
 const App = () => (
-  <MessageProvider>
-    <Router>
-      <>
+  <AuthenticationProvider configuration={oidcConfiguration} UserStore={InMemoryWebStorage}>
+    <MessageProvider>
+      <Router>
         <Header />
         <NavBar />
         <div className="container">
@@ -20,9 +25,9 @@ const App = () => (
           <Routes />
         </div>
         <Footer />
-      </>
-    </Router>
-  </MessageProvider>
+      </Router>
+    </MessageProvider>
+  </AuthenticationProvider>
 );
 
 export default App;
