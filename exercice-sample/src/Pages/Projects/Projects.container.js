@@ -1,33 +1,33 @@
-import Component from "./Projects.component";
-import { lifecycle, withState, compose, withHandlers } from "recompose";
+import React, { useEffect, useState, useContext } from 'react';
+import { MessageContext } from 'Shared/Messages';
 
-const getProjectsUrl = "/api/project";
+import Projects from './Projects.component';
 
-const projectsState = withState("projects", "setprojects", []);
+const getProjectsUrl = '/api/project';
 
-const lifecycleHoc = lifecycle({
-  async componentDidMount() {
-    try {
-      const collection = await this.props.getProjects();
-      this.props.setprojects(collection);
-    } catch (error) {
-      console.error(error);
-    }
+const getProjects = async fetch => {
+  const response = await fetch(getProjectsUrl);
+  if (response.status !== 200) {
+    throw response.statusText;
   }
-});
+  return response.json();
+};
 
-const withFetch = withHandlers({
-  getProjects: () => async () => {
-    const response = await fetch(getProjectsUrl);
-    if (response.status !== 200) {
-      throw response.statusText;
-    }
-    return response.json();
-  }
-});
+const ProjectsContainer = ({ fetch }) => {
+  const { displayMessage } = useContext(MessageContext);
 
-export default compose(
-  projectsState,
-  withFetch,
-  lifecycleHoc
-)(Component);
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    getProjects(fetch).then(
+      response => {
+        setProjects(response);
+      },
+      error => {
+        displayMessage(`Une erreur est survenue: ${error}`);
+      },
+    );
+  }, [displayMessage, fetch]);
+  return <Projects projects={projects} />;
+};
+
+export default () => <ProjectsContainer fetch={fetch} />;

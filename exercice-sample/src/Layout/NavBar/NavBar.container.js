@@ -1,30 +1,22 @@
-import Navbar from "./NavBar.component";
-import { compose, withProps } from "recompose";
-import { withRouter, matchPath } from "react-router";
-import { navBarItems } from "./NavBar.constants";
+import React from 'react';
+import { matchPath, useLocation } from 'react-router-dom';
+import Navbar from './NavBar.component';
+import { navBarItems } from './NavBar.constants';
 
-const findPath = props => element => {
-  const match = matchPath(props.location.pathname, {
+const findPath = location => element => {
+  const match = matchPath(location.pathname, {
     path: element.path,
-    exact: true
+    exact: true,
   });
-  return (
-    (match && match.isExact) ||
-    (props.location.pathname === "/" && element.default) ||
-    false
-  );
+  return (match && match.isExact) || (location.pathname === '/' && element.default) || false;
 };
 
-const setPosition = props => navBarItems.findIndex(findPath(props));
+const setPosition = location => navBarItems.findIndex(findPath(location));
 
-const withPropsHoc = withProps(props => ({
-  navBarItems,
-  positionInit: setPosition(props)
-}));
+const NavbarContainer = () => {
+  const location = useLocation();
+  const positionInit = setPosition(location);
+  return <Navbar navBarItems={navBarItems} positionInit={positionInit} />;
+};
 
-const enhance = compose(
-  withRouter,
-  withPropsHoc
-);
-
-export default enhance(Navbar);
+export default NavbarContainer;

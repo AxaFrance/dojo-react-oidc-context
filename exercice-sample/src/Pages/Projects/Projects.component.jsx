@@ -1,7 +1,7 @@
-import React from "react";
-import Table from "@axa-fr/react-toolkit-table";
+import React from 'react';
+import Table from '@axa-fr/react-toolkit-table';
 
-import "./Projects.scss";
+import './Projects.scss';
 
 const Projects = ({ projects }) => (
   <Table>
@@ -15,17 +15,15 @@ const Projects = ({ projects }) => (
       </Table.Tr>
     </Table.Header>
     <Table.Body>
-      {projects.map(
-        ({ id, projectName, version, usersCount, owner, ownerEmail }) => (
-          <Table.Tr key={id}>
-            <Table.Td>{projectName}</Table.Td>
-            <Table.Td>{version}</Table.Td>
-            <Table.Td>{usersCount}</Table.Td>
-            <Table.Td>{owner}</Table.Td>
-            <Table.Td>{ownerEmail}</Table.Td>
-          </Table.Tr>
-        )
-      )}
+      {projects.map(({ id, projectName, version, usersCount, owner, ownerEmail }) => (
+        <Table.Tr key={id}>
+          <Table.Td>{projectName}</Table.Td>
+          <Table.Td>{version}</Table.Td>
+          <Table.Td>{usersCount}</Table.Td>
+          <Table.Td>{owner}</Table.Td>
+          <Table.Td>{ownerEmail}</Table.Td>
+        </Table.Tr>
+      ))}
     </Table.Body>
   </Table>
 );

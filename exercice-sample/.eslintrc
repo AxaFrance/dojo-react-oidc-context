@@ -1,0 +1,58 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/react",
+    "react-app"
+  ],
+  "plugins": ["react", "prettier", "react-hooks"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "linebreak-style": 0,
+    "import/no-extraneous-dependencies": "warn",
+    "import/no-unresolved": "off",
+    "import/named": "warn",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/aria-role": 1,
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-for": 1,
+    "jsx-a11y/no-autofocus": 1,
+    "jsx-a11y/no-noninteractive-element-interactions": 1,
+    "jsx-a11y/anchor-is-valid": 1,
+    "prettier/prettier": "warn",
+    "react/forbid-prop-types": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/no-multi-comp": 0,
+    "react/no-unused-prop-types": 1,
+    "react/prop-types": 0,
+    "react/no-unescaped-entities": 1,
+    "react/jsx-closing-tag-location": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "./src"]
+      }
+    }
+  }
+}
