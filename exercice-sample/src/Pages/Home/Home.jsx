@@ -4,7 +4,7 @@ import './Home.scss';
 
 const Home = ({ connectedUserFullName }) => (
   <>
-    <p>Bonjour {connectedUserFullName}</p>
+    {connectedUserFullName && <p>Bonjour {connectedUserFullName}</p>}
     <Accordion onlyOne>
       <CollapseCardBase collapse>
         <CollapseCardBase.Header>Déroulé de la séance</CollapseCardBase.Header>
