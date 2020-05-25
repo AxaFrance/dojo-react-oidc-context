@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { withAuthentication } from '@axa-fr/react-oidc-context-fetch';
+
 import { MessageContext } from 'Shared/Messages';
 
 import Projects from './Projects.component';
@@ -30,4 +32,4 @@ const ProjectsContainer = ({ fetch }) => {
   return <Projects projects={projects} />;
 };
 
-export default () => <ProjectsContainer fetch={fetch} />;
+export default withAuthentication(fetch)(ProjectsContainer);

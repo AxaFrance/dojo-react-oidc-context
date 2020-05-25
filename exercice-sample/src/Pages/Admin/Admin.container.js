@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { withAuthentication } from '@axa-fr/react-oidc-context-fetch';
 import { MessageContext } from 'Shared/Messages';
 import Admin from './Admin.component';
 
@@ -29,4 +30,4 @@ const AdminContainer = ({ fetch }) => {
   return <Admin fullNameOidcUser="" users={users} />;
 };
 
-export default () => <AdminContainer fetch={fetch} />;
+export default withAuthentication(fetch)(AdminContainer);
