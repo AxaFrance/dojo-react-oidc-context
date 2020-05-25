@@ -1,1 +1,1 @@
-export { default } from "./Admin.container";
+export { default } from './Admin.container';

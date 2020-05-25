@@ -1,32 +1,26 @@
-import Message from "./Messages.component";
-import { MessageContext } from "./MessageContext";
-import { fromRenderProps, withHandlers, compose, lifecycle } from "recompose";
-import { withRouter } from "react-router-dom";
+import React, { useContext, useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const withContext = fromRenderProps(
-  MessageContext.Consumer,
-  ({ displayMessage, message }) => ({ displayMessage, message })
-);
+import Message from './Messages.component';
+import { MessageContext } from './Messages.context';
 
-const sethandlers = withHandlers({
-  onClose: ({ displayMessage }) => () => {
-    displayMessage("");
-  }
-});
+const MessageContainer = () => {
+  const { message, displayMessage } = useContext(MessageContext);
+  const location = useLocation();
+  const [, setCurrentLocation] = useState(location.pathname);
+  const onClose = useCallback(() => {
+    displayMessage('');
+  }, [displayMessage]);
 
-const withLifeCycle = lifecycle({
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.props.onClose();
-    }
-  }
-});
+  useEffect(() => {
+    setCurrentLocation(prevLocation => {
+      if (prevLocation.pathname !== location.pathname) {
+        onClose();
+      }
+      setCurrentLocation(location);
+    });
+  }, [location, onClose]);
+  return <Message message={message} onClose={onClose} />;
+};
 
-const enhance = compose(
-  withContext,
-  sethandlers,
-  withRouter,
-  withLifeCycle
-);
-
-export default enhance(Message);
+export default MessageContainer;

@@ -1,7 +1,7 @@
-import React from "react";
-import Table from "@axa-fr/react-toolkit-table";
+import React from 'react';
+import Table from '@axa-fr/react-toolkit-table';
 
-import "./Admin.scss";
+import './Admin.scss';
 
 const Admin = ({ users, fullNameOidcUser }) => (
   <>

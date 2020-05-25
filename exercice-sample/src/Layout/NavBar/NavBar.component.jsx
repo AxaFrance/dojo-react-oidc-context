@@ -1,7 +1,7 @@
-import React from "react";
-import { NavBar, NavBarItem, Title } from "@axa-fr/react-toolkit-all";
+import React from 'react';
+import { NavBar, NavBarItem, Title } from '@axa-fr/react-toolkit-all';
 
-import "./NavBar.scss";
+import './NavBar.scss';
 
 const foo = () => {};
 
@@ -10,11 +10,7 @@ const Navbar = ({ positionInit, navBarItems }) => {
     <>
       <NavBar isVisible positionInit={positionInit} onClick={foo}>
         {navBarItems.map(navItem => (
-          <NavBarItem
-            actionElt={navItem.actionElt}
-            key={navItem.path}
-            label={navItem.label}
-          />
+          <NavBarItem actionElt={navItem.actionElt} key={navItem.path} label={navItem.label} />
         ))}
       </NavBar>
       <Title title="OIDC Sample" />

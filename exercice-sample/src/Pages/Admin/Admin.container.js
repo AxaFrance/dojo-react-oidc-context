@@ -1,50 +1,32 @@
-import Component from "./Admin.component";
-import {
-  lifecycle,
-  withState,
-  compose,
-  fromRenderProps,
-  renderNothing,
-  branch,
-  withHandlers
-} from "recompose";
-import { MessageContext } from "Shared/Messages";
+import React, { useContext, useState, useEffect } from 'react';
+import { MessageContext } from 'Shared/Messages';
+import Admin from './Admin.component';
 
-const getUsersUrl = "/api/admin/users";
-const usersState = withState("users", "setUsers", []);
+const getUsersUrl = '/api/admin/users';
 
-const withFetch = withHandlers({
-  getUsers: () => async () => {
-    const response = await fetch(getUsersUrl);
-    if (response.status !== 200) {
-      throw response.statusText;
-    }
-    return response.json();
+const getUsers = async fetch => {
+  const response = await fetch(getUsersUrl);
+  if (response.status !== 200) {
+    throw response.statusText;
   }
-});
+  return response.json();
+};
 
-const lifecycleHoc = lifecycle({
-  async componentDidMount() {
-    try {
-      const users = await this.props.getUsers();
-      this.props.setUsers(users);
-    } catch (error) {
-      this.props.displayMessage(error);
-    }
-  }
-});
+const AdminContainer = ({ fetch }) => {
+  const { displayMessage } = useContext(MessageContext);
+  const [users, setUsers] = useState([]);
 
-const withContext = fromRenderProps(
-  MessageContext.Consumer,
-  ({ displayMessage }) => ({ displayMessage })
-);
+  useEffect(() => {
+    getUsers(fetch).then(
+      response => {
+        setUsers(response);
+      },
+      error => {
+        displayMessage(`Une erreur est survenue: ${error}`);
+      },
+    );
+  }, [displayMessage, fetch]);
+  return <Admin fullNameOidcUser="" users={users} />;
+};
 
-const withBranch = hideIfNotData => branch(hideIfNotData, renderNothing);
-
-export default compose(
-  usersState,
-  withContext,
-  withFetch,
-  lifecycleHoc,
-  withBranch(({ users }) => !users || users.length === 0)
-)(Component);
+export default () => <AdminContainer fetch={fetch} />;
