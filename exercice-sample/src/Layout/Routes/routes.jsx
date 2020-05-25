@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { OidcSecure } from '@axa-fr/react-oidc-context';
 
 import Home from 'Pages/Home';
 import Projects from 'Pages/Projects';
@@ -12,7 +13,9 @@ const Routes = () => {
         <Projects />
       </Route>
       <Route path="/admin">
-        <Admin />
+        <OidcSecure>
+          <Admin />
+        </OidcSecure>
       </Route>
       <Route path="/">
         <Home />

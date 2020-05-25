@@ -29,5 +29,6 @@ export const navBarItems = [
         Administration
       </Link>
     ),
+    protected: true,
   },
 ];
